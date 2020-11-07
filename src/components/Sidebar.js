@@ -6,14 +6,15 @@ import Drawer from '@material-ui/core/Drawer'
 import Hidden from '@material-ui/core/Hidden'
 import IconButton from '@material-ui/core/IconButton'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import { MdMenu } from 'react-icons/md'
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
-const drawerWidth = 240
+import bg from '../images/beer-sidebar.png'
+
+const drawerWidth = 300
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -27,7 +28,6 @@ const useStyles = makeStyles(theme => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    marginBottom: 10,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -39,6 +39,8 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    backgroundImage: `linear-gradient(0deg, rgba(0,0,0,1) -10%, rgba(0,0,0,0.6) 0%), url(${bg})`,
+    objectFit: 'contain',
   },
 }))
 
@@ -55,7 +57,7 @@ const ResponsiveDrawer = ({ window }) => {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-      <Button component={Link} to='/'>
+      <Button variant='contained' component={Link} to='/'>
         Feed
       </Button>
     </div>
