@@ -43,6 +43,7 @@ const useStyles = makeStyles({
   },
   image: {
     height: '100%',
+    padding: 8,
     width: 'auto',
     position: 'absolute',
     top: 0,

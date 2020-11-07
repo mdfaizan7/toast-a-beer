@@ -14,8 +14,8 @@ const useStyles = makeStyles({
     maxWidth: window.innerWidth > 600 ? 500 : 345,
     margin: 20,
     fontFamily: 'Open Sans',
+    borderRadius: 20,
   },
-
   name: {
     fontSize: 20,
     marginBottom: 8,
