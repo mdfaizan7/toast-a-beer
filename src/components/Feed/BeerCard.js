@@ -1,10 +1,14 @@
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
-import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Grid from '@material-ui/core/Grid'
+import Tooltip from '@material-ui/core/Tooltip'
+import IconButton from '@material-ui/core/IconButton'
 import makeStyles from '@material-ui/core/styles/makeStyles'
+
+import { FcLike } from 'react-icons/fc'
+import useStore from '../../store'
 
 const useStyles = makeStyles({
   root: {
@@ -66,11 +70,15 @@ const useStyles = makeStyles({
     fontSize: 15,
     lineHeight: 1.1,
   },
+  actions: {
+    fontSize: 16,
+  },
 })
 
 const BeerCard = ({ beer }) => {
   const classes = useStyles()
-  const { name, image_url, description } = beer
+  const { likeBeer } = useStore()
+  const { id, name, image_url, description, likeCount } = beer
 
   const imageSrc = image_url
     ? image_url
@@ -94,6 +102,12 @@ const BeerCard = ({ beer }) => {
         <CardContent>
           <div className={classes.name}>{name}</div>
           <div className={classes.description}>{description}</div>
+          <Tooltip title='Give a like!'>
+            <IconButton onClick={() => likeBeer(id)}>
+              <FcLike />
+            </IconButton>
+          </Tooltip>
+          <span>{likeCount} likes</span>
         </CardContent>
       </CardActionArea>
     </Card>
