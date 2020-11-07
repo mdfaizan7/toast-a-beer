@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import { MdSend } from 'react-icons/md'
 import Fab from '@material-ui/core/Fab'
 
-import useStore from '../store'
+import useStore from '../../store'
 
 const CommentForm = ({ id }) => {
   const { addComment } = useStore()

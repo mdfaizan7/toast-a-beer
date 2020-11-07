@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 
 import Layout from '../components/Layout'
 import useStore from '../store'
-import GridCard from '../components/GridCard'
+import GridCard from '../components/Grid/GridCard'
 import { Button } from '@material-ui/core'
 
 import { MdSort } from 'react-icons/md'

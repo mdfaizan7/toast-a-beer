@@ -8,8 +8,8 @@ import CardActions from '@material-ui/core/CardActions'
 import Grid from '@material-ui/core/Grid'
 
 import { FcLike } from 'react-icons/fc'
-import useStore from '../store'
-import CardImage from './CardImage'
+import useStore from '../../store'
+import CardImage from '../CardImage'
 import CommentForm from './CommentForm'
 import Comments from './Comments'
 

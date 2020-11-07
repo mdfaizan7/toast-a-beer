@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 
 import Layout from '../components/Layout'
-import BeerCard from '../components/BeerCard'
+import BeerCard from '../components/Feed/BeerCard'
 
 import useStore from '../store'
 

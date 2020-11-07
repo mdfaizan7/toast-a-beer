@@ -5,7 +5,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import Dialog from '@material-ui/core/Dialog'
 import Slide from '@material-ui/core/Slide'
 
-import CardImage from './CardImage'
+import CardImage from '../CardImage'
 import BeerPage from './BeerPage'
 
 const useStyles = makeStyles({
