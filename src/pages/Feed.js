@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 
 import Layout from '../components/Layout'
-import BeerCard from '../components/Feed/BeerCard'
+import BeerCard from '../components/BeerCard'
 
 import useStore from '../store'
 
@@ -17,6 +17,7 @@ const Feed = () => {
     }, 5000)
 
     return () => clearInterval(interval)
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -24,7 +25,7 @@ const Feed = () => {
       <Grid container alignItems='center' justify='center'>
         {beers &&
           beers.map(beer => (
-            <Grid item xs={12} md={6}>
+            <Grid key={beer.id} item xs={12} md={6}>
               <BeerCard beer={beer} />
             </Grid>
           ))}

@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import Hidden from '@material-ui/core/Hidden'
 import IconButton from '@material-ui/core/IconButton'
@@ -15,7 +14,7 @@ import { Link } from 'react-router-dom'
 
 import bg from '../images/beer-sidebar.png'
 
-const drawerWidth = 300
+const drawerWidth = 270
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -37,7 +36,6 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
   },
-  // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,

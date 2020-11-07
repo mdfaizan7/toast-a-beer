@@ -1,20 +1,26 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 
 import Feed from './pages/Feed'
+import Dashboard from './pages/Dashboard'
 
-import './styles/App.scss'
+const useStyles = makeStyles({
+  app: {
+    fontFamily: 'Open Sans',
+  },
+})
 
 function App() {
+  const classes = useStyles()
+
   return (
-    <div className='App'>
-      <MuiThemeProvider>
-        <Router>
-          <Switch>
-            <Route exact path='/' component={Feed} />
-          </Switch>
-        </Router>
-      </MuiThemeProvider>
+    <div className={classes.app}>
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Feed} />
+          <Route exact path='/dashboard' component={Dashboard} />
+        </Switch>
+      </Router>
     </div>
   )
 }
