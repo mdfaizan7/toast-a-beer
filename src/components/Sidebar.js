@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
@@ -8,8 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
-import { MdMenu } from 'react-icons/md'
-import { Button } from '@material-ui/core'
+import { MdMenu, MdDashboard, MdHome } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
 import bg from '../images/beer-sidebar.png'
@@ -24,6 +25,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   appBar: {
+    background: '#fff',
+    boxShadow: 'none',
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -42,12 +45,44 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `linear-gradient(0deg, rgba(0,0,0,1) -10%, rgba(0,0,0,0.6) 0%), url(${bg})`,
     objectFit: 'contain',
   },
+  btn: {
+    display: 'block',
+    paddingTop: 12,
+    paddingBottom: 12,
+    textAlign: 'left',
+    width: '100%',
+    textTransform: 'none',
+    color: '#fff',
+    textDecoration: 'none',
+  },
+  btnText: {
+    display: 'inline-block',
+    textAlign: 'center',
+    fontSize: 16,
+    marginLeft: 10,
+    fontWeight: 700,
+  },
+  btnIcon: {
+    color: '#fff',
+    verticalAlign: 'middle',
+    objectFit: 'contain',
+    fontSize: 22,
+  },
+  title: {
+    fontSize: 30,
+    color: '#fff',
+    marginLeft: 10,
+    marginTop: 5,
+  },
 }))
 
-const ResponsiveDrawer = ({ window }) => {
+const ResponsiveDrawer = ({ window, match }) => {
   const classes = useStyles()
+  const location = useLocation()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const page = location.pathname === '/' ? 'Feed' : 'Dashboard'
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -55,11 +90,30 @@ const ResponsiveDrawer = ({ window }) => {
 
   const drawer = (
     <div>
+      <div className={classes.title}>Toast A Beer</div>
       <div className={classes.toolbar} />
-      <Divider />
-      <Button variant='contained' component={Link} to='/'>
-        Feed
-      </Button>
+      <Link
+        className={classes.btn}
+        style={{ backgroundColor: page === 'Feed' ? '#64b5f6' : 'transparent' }}
+        to='/'
+      >
+        <div className={classes.btnText}>
+          <MdHome className={classes.btnIcon} />
+          <span style={{ marginLeft: 13 }}>Feed</span>
+        </div>
+      </Link>
+      <Link
+        className={classes.btn}
+        style={{
+          backgroundColor: page === 'Dashboard' ? '#64b5f6' : 'transparent',
+        }}
+        to='/dashboard'
+      >
+        <div className={classes.btnText}>
+          <MdDashboard className={classes.btnIcon} />
+          <span style={{ marginLeft: 13 }}>Dashboard</span>
+        </div>
+      </Link>
     </div>
   )
 
@@ -78,8 +132,9 @@ const ResponsiveDrawer = ({ window }) => {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MdMenu />
+            <MdMenu color='black' />
           </IconButton>
+          <div style={{ color: '#111', fontSize: 28 }}>{page}</div>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>
