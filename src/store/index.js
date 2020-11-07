@@ -19,7 +19,6 @@ const useStore = create((set, get) => ({
       if (objIdx === -1) {
         randBeer[0].comments = []
         randBeer[0].likeCount = 0
-
         set(state => ({ beers: randBeer.concat(state.beers) }))
       }
     } catch (err) {
@@ -32,6 +31,14 @@ const useStore = create((set, get) => ({
     let objIdx = array.findIndex(obj => obj.id === id)
 
     array[objIdx].likeCount += 1
+    set({ beers: array })
+  },
+
+  addComment: (id, comment) => {
+    let array = get().beers
+    let objIdx = array.findIndex(obj => obj.id === id)
+    const comm = { id: Date.now(), body: comment }
+    array[objIdx].comments.push(comm)
     set({ beers: array })
   },
 

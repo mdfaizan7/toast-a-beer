@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Grid from '@material-ui/core/Grid'
 
@@ -33,9 +34,7 @@ const Dashboard = () => {
         {beers &&
           beers.map(beer => (
             <Grid key={beer.id} item xs={6} md={3}>
-              <div onClick={() => console.log('clicked')}>
-                <GridCard beer={beer} />
-              </div>
+              <GridCard beer={beer} />
             </Grid>
           ))}
       </Grid>
