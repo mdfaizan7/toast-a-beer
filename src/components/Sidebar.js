@@ -1,17 +1,29 @@
 import { useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 // mui
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Drawer from '@material-ui/core/Drawer'
 import Hidden from '@material-ui/core/Hidden'
 import IconButton from '@material-ui/core/IconButton'
 import Toolbar from '@material-ui/core/Toolbar'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+import Tooltip from '@material-ui/core/Tooltip'
 // icons
-import { MdMenu, MdDashboard, MdHome } from 'react-icons/md'
-import bg from '../images/beer-sidebar.png'
+import {
+  MdMenu,
+  MdDashboard,
+  MdHome,
+  MdBrightnessHigh,
+  MdBrightness4,
+} from 'react-icons/md'
+import { WiMoonAltThirdQuarter } from 'react-icons/wi'
+
+import bg from '../images/sidebar-bg.png'
+// store
+import userStore from '../store'
+import { Button } from '@material-ui/core'
 
 const drawerWidth = 270
 
@@ -23,7 +35,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   appBar: {
-    background: '#333',
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -80,6 +91,8 @@ const ResponsiveDrawer = ({ window, match }) => {
   const classes = useStyles()
   const location = useLocation()
   const theme = useTheme()
+  const { darkMode, toggleDarkMode } = userStore()
+
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const page = location.pathname === '/' ? 'Feed' : 'Dashboard'
@@ -94,26 +107,26 @@ const ResponsiveDrawer = ({ window, match }) => {
       <div className={classes.toolbar} />
       <Link
         className={classes.btn}
-        style={{ color: page === 'Feed' ? '#90caf9' : '#fff' }}
+        style={{ color: page === 'Feed' ? '#1976d2' : '#fff' }}
         to='/'
       >
         <Typography className={classes.btnText}>
           <MdHome
             className={classes.btnIcon}
-            style={{ color: page === 'Feed' ? '#90caf9' : '#fff' }}
+            style={{ color: page === 'Feed' ? '#1976d2' : '#fff' }}
           />
           <span className={classes.sidebarTitle}>Feed</span>
         </Typography>
       </Link>
       <Link
         className={classes.btn}
-        style={{ color: page === 'Dashboard' ? '#90caf9' : '#fff' }}
+        style={{ color: page === 'Dashboard' ? '#1976d2' : '#fff' }}
         to='/dashboard'
       >
         <Typography className={classes.btnText}>
           <MdDashboard
             className={classes.btnIcon}
-            style={{ color: page === 'Dashboard' ? '#90caf9' : '#fff' }}
+            style={{ color: page === 'Dashboard' ? '#1976d2' : '#fff' }}
           />
           <span className={classes.sidebarTitle}>Dashboard</span>
         </Typography>
@@ -127,7 +140,10 @@ const ResponsiveDrawer = ({ window, match }) => {
   return (
     <div>
       <CssBaseline />
-      <AppBar className={classes.appBar}>
+      <AppBar
+        className={classes.appBar}
+        style={{ background: darkMode ? '#333' : '#1976d2', flexGrow: 1 }}
+      >
         <Toolbar>
           <IconButton
             color='inherit'
@@ -141,6 +157,14 @@ const ResponsiveDrawer = ({ window, match }) => {
           <Typography style={{ fontSize: 28, color: '#fff' }}>
             {page}
           </Typography>
+
+          <div style={{ marginLeft: 'auto' }}>
+            <Tooltip edge='end' title='Toggle dark/light theme'>
+              <IconButton onClick={toggleDarkMode} style={{ color: '#fff' }}>
+                {darkMode ? <MdBrightnessHigh /> : <MdBrightness4 />}
+              </IconButton>
+            </Tooltip>
+          </div>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>

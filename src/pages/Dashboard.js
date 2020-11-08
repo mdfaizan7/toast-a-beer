@@ -72,7 +72,7 @@ const Dashboard = () => {
               <MuiTableCell>Name</MuiTableCell>
               <MuiTableCell align='right'>First Brewed</MuiTableCell>
               <MuiTableCell align='right'>pH</MuiTableCell>
-              <MuiTableCell align='right'>Volume (L)</MuiTableCell>
+              <MuiTableCell align='right'>ABV</MuiTableCell>
               <MuiTableCell align='right'>Likes</MuiTableCell>
             </TableRow>
           </TableHead>

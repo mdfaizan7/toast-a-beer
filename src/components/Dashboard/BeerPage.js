@@ -97,6 +97,7 @@ const BeerPage = ({ beer }) => {
         TransitionComponent={Slide}
         TransitionProps={{ direction: 'up' }}
       >
+        <Typography className={classes.name}>{name}</Typography>
         <div className={classes.container}>
           <Grid container alignItems='flex-start' justify='center'>
             <Grid item xs={12} md={6}>

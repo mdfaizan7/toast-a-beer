@@ -6,6 +6,7 @@ axios.defaults.baseURL = 'https://api.punkapi.com/v2/beers'
 const useStore = create((set, get) => ({
   beers: [],
   foodPairings: [],
+  darkMode: true,
 
   /* 
     FUNCTIONS 
@@ -50,6 +51,12 @@ const useStore = create((set, get) => ({
     const comm = { id: Date.now(), body: comment }
     array[objIdx].comments.push(comm)
     set({ beers: array })
+  },
+
+  // toggle between light mode and dark mode
+  toggleDarkMode: () => {
+    let mode = get().darkMode
+    set({ darkMode: !mode })
   },
 }))
 

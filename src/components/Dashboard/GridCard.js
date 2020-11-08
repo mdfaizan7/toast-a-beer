@@ -4,8 +4,6 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Grow from '@material-ui/core/Grow'
 import Typography from '@material-ui/core/Typography'
-// icons
-import { MdKeyboardBackspace } from 'react-icons/md'
 // components
 import CardImage from '../CardImage'
 import BeerPage from './BeerPage'

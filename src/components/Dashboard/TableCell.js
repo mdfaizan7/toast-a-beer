@@ -1,6 +1,7 @@
 import TableRow from '@material-ui/core/TableRow'
 import MuiTableCell from '@material-ui/core/TableCell'
-import Dialog from '@material-ui/core/Dialog'
+import Grow from '@material-ui/core/Grow'
+// components
 import BeerPage from './BeerPage'
 
 const TableCell = ({ beer }) => {
@@ -9,19 +10,21 @@ const TableCell = ({ beer }) => {
   }
   return (
     <>
-      <TableRow
-        style={{ cursor: 'pointer' }}
-        key={beer.id}
-        onClick={handleClick}
-      >
-        <MuiTableCell component='th' scope='row'>
-          {beer.name}
-        </MuiTableCell>
-        <MuiTableCell align='right'>{beer.first_brewed}</MuiTableCell>
-        <MuiTableCell align='right'>{beer.ph}</MuiTableCell>
-        <MuiTableCell align='right'>{beer.volume.value}</MuiTableCell>
-        <MuiTableCell align='right'>{beer.likeCount}</MuiTableCell>
-      </TableRow>
+      <Grow in>
+        <TableRow
+          style={{ cursor: 'pointer' }}
+          key={beer.id}
+          onClick={handleClick}
+        >
+          <MuiTableCell component='th' scope='row'>
+            {beer.name}
+          </MuiTableCell>
+          <MuiTableCell align='right'>{beer.first_brewed}</MuiTableCell>
+          <MuiTableCell align='right'>{beer.ph}</MuiTableCell>
+          <MuiTableCell align='right'>{beer.abv}</MuiTableCell>
+          <MuiTableCell align='right'>{beer.likeCount}</MuiTableCell>
+        </TableRow>
+      </Grow>
       <BeerPage beer={beer} />
     </>
   )
