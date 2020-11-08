@@ -1,5 +1,6 @@
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles({
   comment: {},
@@ -29,7 +30,9 @@ const Comments = ({ comments }) => {
               alt='profile'
             />
           </Grid>
-          <Grid item>{body}</Grid>
+          <Grid item>
+            <Typography>{body}</Typography>
+          </Grid>
         </Grid>
       ))}
     </div>

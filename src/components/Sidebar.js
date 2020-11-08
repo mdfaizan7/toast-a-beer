@@ -8,6 +8,7 @@ import Hidden from '@material-ui/core/Hidden'
 import IconButton from '@material-ui/core/IconButton'
 import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 // icons
 import { MdMenu, MdDashboard, MdHome } from 'react-icons/md'
 import bg from '../images/beer-sidebar.png'
@@ -96,26 +97,26 @@ const ResponsiveDrawer = ({ window, match }) => {
         style={{ color: page === 'Feed' ? '#90caf9' : '#fff' }}
         to='/'
       >
-        <div className={classes.btnText}>
+        <Typography className={classes.btnText}>
           <MdHome
             className={classes.btnIcon}
             style={{ color: page === 'Feed' ? '#90caf9' : '#fff' }}
           />
           <span className={classes.sidebarTitle}>Feed</span>
-        </div>
+        </Typography>
       </Link>
       <Link
         className={classes.btn}
         style={{ color: page === 'Dashboard' ? '#90caf9' : '#fff' }}
         to='/dashboard'
       >
-        <div className={classes.btnText}>
+        <Typography className={classes.btnText}>
           <MdDashboard
             className={classes.btnIcon}
             style={{ color: page === 'Dashboard' ? '#90caf9' : '#fff' }}
           />
           <span className={classes.sidebarTitle}>Dashboard</span>
-        </div>
+        </Typography>
       </Link>
     </div>
   )
@@ -135,9 +136,11 @@ const ResponsiveDrawer = ({ window, match }) => {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MdMenu />
+            <MdMenu style={{ color: '#fff' }} />
           </IconButton>
-          <div style={{ fontSize: 28, color: '#fff' }}>{page}</div>
+          <Typography style={{ fontSize: 28, color: '#fff' }}>
+            {page}
+          </Typography>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>

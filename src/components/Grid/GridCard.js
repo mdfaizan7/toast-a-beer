@@ -5,6 +5,8 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Dialog from '@material-ui/core/Dialog'
 import Slide from '@material-ui/core/Slide'
+import Grow from '@material-ui/core/Grow'
+import Typography from '@material-ui/core/Typography'
 // icons
 import { MdKeyboardBackspace } from 'react-icons/md'
 // components
@@ -53,12 +55,14 @@ const GridCard = ({ beer }) => {
 
   return (
     <div>
-      <Card className={classes.root} onClick={handleClickOpen}>
-        <CardActionArea>
-          <CardImage image_url={image_url} name={name} />
-          <div className={classes.name}>{name}</div>
-        </CardActionArea>
-      </Card>
+      <Grow in>
+        <Card className={classes.root} onClick={handleClickOpen}>
+          <CardActionArea>
+            <CardImage image_url={image_url} name={name} />
+            <Typography className={classes.name}>{name}</Typography>
+          </CardActionArea>
+        </Card>
+      </Grow>
       <Dialog
         open={open}
         onClose={handleClose}

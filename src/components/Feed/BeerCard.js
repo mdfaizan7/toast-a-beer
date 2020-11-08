@@ -1,3 +1,4 @@
+// mui
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
@@ -6,12 +7,16 @@ import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
 import CardActions from '@material-ui/core/CardActions'
 import Grid from '@material-ui/core/Grid'
-
+import Grow from '@material-ui/core/Grow'
+import Typography from '@material-ui/core/Typography'
+// icons
 import { FcLike } from 'react-icons/fc'
-import useStore from '../../store'
+// components
 import CardImage from '../CardImage'
 import CommentForm from './CommentForm'
 import Comments from './Comments'
+// store
+import useStore from '../../store'
 
 const useStyles = makeStyles({
   root: {
@@ -40,36 +45,40 @@ const BeerCard = ({ beer }) => {
   const { id, name, image_url, description, likeCount, comments } = beer
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardImage image_url={image_url} name={name} />
-        <CardContent>
-          <Grid
-            container
-            direction='row'
-            justify='space-between'
-            alignItems='center'
-          >
-            <Grid item xs={9}>
-              <div className={classes.name}>{name}</div>
+    <Grow in>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardImage image_url={image_url} name={name} />
+          <CardContent>
+            <Grid
+              container
+              direction='row'
+              justify='space-between'
+              alignItems='center'
+            >
+              <Grid item xs={9}>
+                <Typography className={classes.name}>{name}</Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Tooltip title='Give a like!'>
+                  <IconButton onClick={() => likeBeer(id)}>
+                    <FcLike />
+                  </IconButton>
+                </Tooltip>
+                {likeCount}
+              </Grid>
             </Grid>
-            <Grid item xs={3}>
-              <Tooltip title='Give a like!'>
-                <IconButton onClick={() => likeBeer(id)}>
-                  <FcLike />
-                </IconButton>
-              </Tooltip>
-              {likeCount}
-            </Grid>
-          </Grid>
-          <div className={classes.description}>{description}</div>
-        </CardContent>
-      </CardActionArea>
-      <CardActions style={{ display: 'block', margin: '0 20px 20px 20px' }}>
-        <CommentForm id={id} />
-        <Comments comments={comments} />
-      </CardActions>
-    </Card>
+            <Typography className={classes.description}>
+              {description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions style={{ display: 'block', margin: '0 20px 20px 20px' }}>
+          <CommentForm id={id} />
+          <Comments comments={comments} />
+        </CardActions>
+      </Card>
+    </Grow>
   )
 }
 

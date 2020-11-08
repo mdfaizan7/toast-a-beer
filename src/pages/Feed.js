@@ -22,7 +22,7 @@ const Feed = () => {
 
   return (
     <Layout>
-      <Grid container alignItems='center' justify='center'>
+      <Grid container alignItems='center' justify='flex-start'>
         {beers &&
           beers.map(beer => (
             <Grid key={beer.id} item xs={12} md={6}>

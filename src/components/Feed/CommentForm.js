@@ -1,9 +1,11 @@
 import { useState } from 'react'
+// mui
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
-import { MdSend } from 'react-icons/md'
 import Fab from '@material-ui/core/Fab'
-
+// icons
+import { MdSend } from 'react-icons/md'
+// store
 import useStore from '../../store'
 
 const CommentForm = ({ id }) => {
@@ -52,7 +54,7 @@ const CommentForm = ({ id }) => {
               aria-label='post'
               onClick={handleSubmit}
             >
-              <MdSend style={{ fontSize: 16 }} />
+              <MdSend style={{ fontSize: 22, color: '#fff' }} />
             </Fab>
           </Grid>
         </Grid>
