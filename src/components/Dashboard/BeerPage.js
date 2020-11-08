@@ -1,9 +1,14 @@
+import { useState, useEffect } from 'react'
 // mui
+import Dialog from '@material-ui/core/Dialog'
+import Slide from '@material-ui/core/Slide'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Typography from '@material-ui/core/Typography'
+// icons
+import { MdKeyboardBackspace } from 'react-icons/md'
 // components
 import CardImage from '../CardImage'
 
@@ -43,11 +48,18 @@ const useStyles = makeStyles({
   detailsTitle: {
     fontWeight: 600,
   },
+  backBtn: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    fontSize: window.innerWidth > 600 ? 50 : 30,
+  },
 })
 
 const BeerPage = ({ beer }) => {
   const classes = useStyles()
   const {
+    id,
     image_url,
     name,
     tagline,
@@ -62,93 +74,116 @@ const BeerPage = ({ beer }) => {
     food_pairing,
     brewers_tips,
   } = beer
+  const [open, setOpen] = useState(window.location.hash === `#beer${id}`)
+
+  useEffect(() => {
+    const onHashChange = () => setOpen(window.location.hash === `#beer${id}`)
+
+    window.addEventListener('hashchange', onHashChange)
+
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [id])
+
+  const handleClose = () => {
+    window.history.back()
+  }
 
   return (
     <>
-      <Typography className={classes.name}>{name}</Typography>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullScreen
+        TransitionComponent={Slide}
+        TransitionProps={{ direction: 'up' }}
+      >
+        <div className={classes.container}>
+          <Grid container alignItems='flex-start' justify='center'>
+            <Grid item xs={12} md={6}>
+              <Card className={classes.root}>
+                <CardActionArea>
+                  <CardImage image_url={image_url} name={name} />
+                </CardActionArea>
+                <Typography className={classes.tagline}>{tagline}</Typography>
+                <Typography className={classes.description}>
+                  {description}
+                </Typography>
+              </Card>
+            </Grid>
+            <Grid item xs={12} md={6} style={{ textAlign: 'left' }}>
+              <div style={{ marginLeft: 40, marginRight: 40 }}>
+                <Typography
+                  style={{
+                    fontSize: 30,
+                    fontWeight: 600,
+                    textAlign: 'left',
+                    marginBottom: 20,
+                  }}
+                >
+                  DETAILS:
+                </Typography>
 
-      <div className={classes.container}>
-        <Grid container alignItems='flex-start' justify='center'>
-          <Grid item xs={12} md={6}>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardImage image_url={image_url} name={name} />
-              </CardActionArea>
-              <Typography className={classes.tagline}>{tagline}</Typography>
-              <Typography className={classes.description}>
-                {description}
-              </Typography>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={6} style={{ textAlign: 'left' }}>
-            <div style={{ marginLeft: 40, marginRight: 40 }}>
-              <Typography
-                style={{
-                  fontSize: 30,
-                  fontWeight: 600,
-                  textAlign: 'left',
-                  marginBottom: 20,
-                }}
-              >
-                DETAILS:
-              </Typography>
-
-              <Typography className={classes.details}>
-                <span className={classes.detailsTitle}>First Brewed</span> :
-                {first_brewed}
-              </Typography>
-              <Typography className={classes.details}>
-                <span className={classes.detailsTitle}>ABV</span> : {abv}
-              </Typography>
-              <Typography className={classes.details}>
-                <span className={classes.detailsTitle}>IBU</span> : {ibu}
-              </Typography>
-              <Typography className={classes.details}>
-                <span className={classes.detailsTitle}>EBC</span> : {ebc}
-              </Typography>
-              <Typography className={classes.details}>
-                <span className={classes.detailsTitle}>SRM</span> : {srm}
-              </Typography>
-              <Typography className={classes.details}>
-                <span className={classes.detailsTitle}>pH</span> : {ph}
-              </Typography>
-              <Typography className={classes.details}>
-                <div className={classes.detailsTitle}>Malt:</div>
-                {malt.map(({ name, amount: { value, unit } }) => (
-                  <li key={`${name} - ${value} ${unit}`}>
-                    {`${name} - ${value} ${unit}`}{' '}
-                  </li>
-                ))}
-              </Typography>
-              <Typography className={classes.details}>
-                <div className={classes.detailsTitle}>Hops:</div>
-                {hops.map(
-                  ({ name, amount: { value, unit }, add, attribute }) => (
-                    <li
-                      key={`${name}(${value} ${unit}) - ${add} - ${attribute}`}
-                    >
-                      {`${name}(${value} ${unit}) - ${add} - ${attribute}`}{' '}
+                <Typography className={classes.details}>
+                  <span className={classes.detailsTitle}>First Brewed</span> :
+                  {first_brewed}
+                </Typography>
+                <Typography className={classes.details}>
+                  <span className={classes.detailsTitle}>ABV</span> : {abv}
+                </Typography>
+                <Typography className={classes.details}>
+                  <span className={classes.detailsTitle}>IBU</span> : {ibu}
+                </Typography>
+                <Typography className={classes.details}>
+                  <span className={classes.detailsTitle}>EBC</span> : {ebc}
+                </Typography>
+                <Typography className={classes.details}>
+                  <span className={classes.detailsTitle}>SRM</span> : {srm}
+                </Typography>
+                <Typography className={classes.details}>
+                  <span className={classes.detailsTitle}>pH</span> : {ph}
+                </Typography>
+                <Typography className={classes.details}>
+                  <div className={classes.detailsTitle}>Malt:</div>
+                  {malt.map(({ name, amount: { value, unit } }) => (
+                    <li key={`${name} - ${value} ${unit}`}>
+                      {`${name} - ${value} ${unit}`}{' '}
                     </li>
-                  )
-                )}
-              </Typography>
-              <Typography className={classes.details}>
-                <span className={classes.detailsTitle}>Yeast</span> : {yeast}
-              </Typography>
-              <Typography className={classes.details}>
-                <div className={classes.detailsTitle}>Food Pairing:</div>
-                {food_pairing.map(pairing => (
-                  <li key={pairing}>{pairing}</li>
-                ))}
-              </Typography>
-              <Typography className={classes.details}>
-                <div className={classes.detailsTitle}>Brewers Tips:</div>
-                {brewers_tips}
-              </Typography>
-            </div>
+                  ))}
+                </Typography>
+                <Typography className={classes.details}>
+                  <div className={classes.detailsTitle}>Hops:</div>
+                  {hops.map(
+                    ({ name, amount: { value, unit }, add, attribute }) => (
+                      <li
+                        key={`${name}(${value} ${unit}) - ${add} - ${attribute}`}
+                      >
+                        {`${name}(${value} ${unit}) - ${add} - ${attribute}`}{' '}
+                      </li>
+                    )
+                  )}
+                </Typography>
+                <Typography className={classes.details}>
+                  <span className={classes.detailsTitle}>Yeast</span> : {yeast}
+                </Typography>
+                <Typography className={classes.details}>
+                  <div className={classes.detailsTitle}>Food Pairing:</div>
+                  {food_pairing.map(pairing => (
+                    <li key={pairing}>{pairing}</li>
+                  ))}
+                </Typography>
+                <Typography className={classes.details}>
+                  <div className={classes.detailsTitle}>Brewers Tips:</div>
+                  {brewers_tips}
+                </Typography>
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
-      </div>
+        </div>
+
+        <div className={classes.backBtn} onClick={handleClose}>
+          <MdKeyboardBackspace />
+        </div>
+      </Dialog>
     </>
   )
 }

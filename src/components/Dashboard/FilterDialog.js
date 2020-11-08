@@ -53,6 +53,7 @@ const FilterDialog = ({ handleChange, filters, clearFilters }) => {
                       value={pair}
                       checked={filters.includes(pair)}
                       onChange={handleChange}
+                      color='primary'
                     />
                   }
                   label={pair}
