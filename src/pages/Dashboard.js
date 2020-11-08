@@ -103,7 +103,7 @@ const Dashboard = () => {
 
             if (
               (noFilter || isFiltered) &&
-              beer.name.toLowerCase().includes(search)
+              beer.name.toLowerCase().includes(search.toLowerCase())
             ) {
               return (
                 <Grid key={beer.id} item xs={6} md={3}>
