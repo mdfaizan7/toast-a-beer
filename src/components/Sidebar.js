@@ -18,12 +18,10 @@ import {
   MdBrightnessHigh,
   MdBrightness4,
 } from 'react-icons/md'
-import { WiMoonAltThirdQuarter } from 'react-icons/wi'
 
 import bg from '../images/sidebar-bg.png'
 // store
 import userStore from '../store'
-import { Button } from '@material-ui/core'
 
 const drawerWidth = 270
 
