@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
+// mui
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Dialog from '@material-ui/core/Dialog'
 import Slide from '@material-ui/core/Slide'
-
+import Fab from '@material-ui/core/Fab'
+// icons
+import { MdKeyboardBackspace } from 'react-icons/md'
+// components
 import CardImage from '../CardImage'
 import BeerPage from './BeerPage'
 
@@ -17,6 +21,12 @@ const useStyles = makeStyles({
   name: {
     margin: 8,
     fontSize: 15,
+  },
+  backBtn: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    fontSize: 50,
   },
 })
 
@@ -58,6 +68,9 @@ const GridCard = ({ beer }) => {
         TransitionProps={{ direction: 'up' }}
       >
         <BeerPage beer={beer} />
+        <div className={classes.backBtn} onClick={handleClose}>
+          <MdKeyboardBackspace />
+        </div>
       </Dialog>
     </div>
   )

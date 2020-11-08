@@ -13,14 +13,13 @@ const useStore = create((set, get) => ({
     try {
       const { data: randBeer } = await axios.get('/random') // fetch a new random array
 
-      let array = get().beers
-      let objIdx = array.findIndex(obj => obj.id === randBeer.id)
+      randBeer[0].comments = []
+      randBeer[0].likeCount = 0
 
-      if (objIdx === -1) {
-        randBeer[0].comments = []
-        randBeer[0].likeCount = 0
-        set(state => ({ beers: randBeer.concat(state.beers) }))
-      }
+      const beers = get().beers
+      const newArray = randBeer.concat(beers)
+
+      set({ beers: [...new Set(newArray)] })
     } catch (err) {
       console.log(err)
     }
