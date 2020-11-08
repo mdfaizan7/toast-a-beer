@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
-
+import { useLocation, Link } from 'react-router-dom'
+// mui
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Drawer from '@material-ui/core/Drawer'
@@ -8,10 +8,8 @@ import Hidden from '@material-ui/core/Hidden'
 import IconButton from '@material-ui/core/IconButton'
 import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-
+// icons
 import { MdMenu, MdDashboard, MdHome } from 'react-icons/md'
-import { Link } from 'react-router-dom'
-
 import bg from '../images/beer-sidebar.png'
 
 const drawerWidth = 270
@@ -24,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   appBar: {
-    background: '#fff',
+    background: '#333',
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -39,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundImage: `linear-gradient(0deg, rgba(0,0,0,1) -10%, rgba(0,0,0,0.6) 0%), url(${bg})`,
+    backgroundImage: `linear-gradient(0deg, rgba(25,25,25,0.8) -10%, rgba(25,25,25,0.8) 100%), url(${bg})`,
     objectFit: 'contain',
   },
   btn: {
@@ -63,13 +61,17 @@ const useStyles = makeStyles(theme => ({
     color: '#fff',
     verticalAlign: 'middle',
     objectFit: 'contain',
-    fontSize: 22,
+    fontSize: 25,
   },
   title: {
     fontSize: 30,
     color: '#fff',
     marginLeft: 10,
     marginTop: 5,
+  },
+  sidebarTitle: {
+    marginLeft: 13,
+    fontSize: 22,
   },
 }))
 
@@ -91,24 +93,28 @@ const ResponsiveDrawer = ({ window, match }) => {
       <div className={classes.toolbar} />
       <Link
         className={classes.btn}
-        style={{ backgroundColor: page === 'Feed' ? '#64b5f6' : 'transparent' }}
+        style={{ color: page === 'Feed' ? '#90caf9' : '#fff' }}
         to='/'
       >
         <div className={classes.btnText}>
-          <MdHome className={classes.btnIcon} />
-          <span style={{ marginLeft: 13 }}>Feed</span>
+          <MdHome
+            className={classes.btnIcon}
+            style={{ color: page === 'Feed' ? '#90caf9' : '#fff' }}
+          />
+          <span className={classes.sidebarTitle}>Feed</span>
         </div>
       </Link>
       <Link
         className={classes.btn}
-        style={{
-          backgroundColor: page === 'Dashboard' ? '#64b5f6' : 'transparent',
-        }}
+        style={{ color: page === 'Dashboard' ? '#90caf9' : '#fff' }}
         to='/dashboard'
       >
         <div className={classes.btnText}>
-          <MdDashboard className={classes.btnIcon} />
-          <span style={{ marginLeft: 13 }}>Dashboard</span>
+          <MdDashboard
+            className={classes.btnIcon}
+            style={{ color: page === 'Dashboard' ? '#90caf9' : '#fff' }}
+          />
+          <span className={classes.sidebarTitle}>Dashboard</span>
         </div>
       </Link>
     </div>
@@ -129,9 +135,9 @@ const ResponsiveDrawer = ({ window, match }) => {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MdMenu color='black' />
+            <MdMenu />
           </IconButton>
-          <div style={{ color: '#111', fontSize: 28 }}>{page}</div>
+          <div style={{ fontSize: 28, color: '#fff' }}>{page}</div>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>

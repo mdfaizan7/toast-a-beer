@@ -1,5 +1,5 @@
+// mui stuff
 import { makeStyles } from '@material-ui/core/styles'
-
 import Sidebar from './Sidebar'
 
 const useStyles = makeStyles(theme => ({
@@ -10,8 +10,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     marginTop: 50,
-    backgroundColor: '#efefef',
+    backgroundColor: '#212121',
     minHeight: '100vh',
+    fontFamily: 'Open Sans',
   },
 }))
 
