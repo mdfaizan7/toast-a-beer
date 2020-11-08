@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     margin: 10,
     fontWeight: 600,
     textAlign: 'center',
-    marginTop: 30,
+    marginTop: 50,
   },
   tagline: {
     fontSize: 17,

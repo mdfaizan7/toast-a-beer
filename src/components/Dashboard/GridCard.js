@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     position: 'absolute',
     top: 20,
     left: 20,
-    fontSize: 50,
+    fontSize: window.innerWidth > 600 ? 50 : 30,
   },
 })
 

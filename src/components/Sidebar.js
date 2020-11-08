@@ -90,7 +90,7 @@ const ResponsiveDrawer = ({ window, match }) => {
 
   const drawer = (
     <div>
-      <div className={classes.title}>Toast A Beer</div>
+      <div className={classes.title}>🍻 Toast A Beer</div>
       <div className={classes.toolbar} />
       <Link
         className={classes.btn}
