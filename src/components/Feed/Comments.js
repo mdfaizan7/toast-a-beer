@@ -26,6 +26,7 @@ const Comments = ({ comments }) => {
             <img
               src='https://icon-library.com/images/anonymous-user-icon/anonymous-user-icon-2.jpg'
               style={{ width: 35, borderRadius: '50%' }}
+              alt='profile'
             />
           </Grid>
           <Grid item>{body}</Grid>

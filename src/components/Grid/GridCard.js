@@ -5,7 +5,6 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Dialog from '@material-ui/core/Dialog'
 import Slide from '@material-ui/core/Slide'
-import Fab from '@material-ui/core/Fab'
 // icons
 import { MdKeyboardBackspace } from 'react-icons/md'
 // components

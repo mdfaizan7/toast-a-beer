@@ -41,11 +41,7 @@ const useStore = create((set, get) => ({
     set({ beers: array })
   },
 
-  sortByLikes: () => {
-    let beers = get().beers
-    beers.sort((a, b) => b.likeCount - a.likeCount)
-    set({ beers })
-  },
+  getBeers: () => get().beers,
 }))
 
 export default useStore
