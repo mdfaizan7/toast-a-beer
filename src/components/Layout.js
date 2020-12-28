@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 const Layout = ({ children }) => {
   const darkMode = userStore(state => state.darkMode)
   const classes = useStyles()
-
   return (
     <div className={classes.root}>
       <Sidebar />
