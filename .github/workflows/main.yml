@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setting env for Staging
+        if: endsWith(github.ref, '/main')
+        run: |
+          echo "STAGING=${{ secrets.STAGING }}" >> $GITHUB_ENV
+          
+      - name: Echo env
+        run: echo "$STAGING"
